@@ -537,41 +537,6 @@ Begin Window MainWindow
       Underline       =   False
       Visible         =   True
       Width           =   476
-      Begin Label Label9
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
-         Italic          =   False
-         Left            =   332
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "A"
-         TextAlignment   =   0
-         TextColor       =   &c00000000
-         Tooltip         =   ""
-         Top             =   353
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   23
-      End
       Begin Label Label10
          AllowAutoDeactivate=   True
          Bold            =   False
@@ -677,41 +642,6 @@ Begin Window MainWindow
          Visible         =   True
          Width           =   34
       End
-      Begin Label Label13
-         AllowAutoDeactivate=   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Height          =   20
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
-         Italic          =   False
-         Left            =   40
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   4
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "Current (Ib)"
-         TextAlignment   =   0
-         TextColor       =   &c00000000
-         Tooltip         =   ""
-         Top             =   353
-         Transparent     =   False
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
-      End
       Begin Label Label14
          AllowAutoDeactivate=   True
          Bold            =   False
@@ -816,50 +746,6 @@ Begin Window MainWindow
          Underline       =   False
          Visible         =   True
          Width           =   188
-      End
-      Begin TextField CurrentEdit2
-         AllowAutoDeactivate=   True
-         AllowFocusRing  =   True
-         AllowSpellChecking=   False
-         AllowTabs       =   False
-         BackgroundColor =   &cFFFFFF00
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         FontName        =   "System"
-         FontSize        =   0.0
-         FontUnit        =   0
-         Format          =   ""
-         HasBorder       =   True
-         Height          =   22
-         Hint            =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox2"
-         Italic          =   False
-         Left            =   240
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         MaximumCharactersAllowed=   0
-         Password        =   False
-         ReadOnly        =   False
-         Scope           =   0
-         TabIndex        =   8
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   ""
-         TextAlignment   =   0
-         TextColor       =   &c00000000
-         Tooltip         =   ""
-         Top             =   352
-         Transparent     =   False
-         Underline       =   False
-         ValidationMask  =   ""
-         Visible         =   True
-         Width           =   80
       End
       Begin TextField ImpedanceEdit2
          AllowAutoDeactivate=   True
@@ -1032,6 +918,23 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  Var MVA3ph1 as Double = PowerEdit1.Text.ToDouble
+		  Var kVll1 as Double = VoltageEdit1.Text.ToDouble
+		  Var Zb1 as Double = ImpedanceEdit1.Text.ToDouble
+		  
+		  Var MVA3ph2 as Double = PowerEdit2.Text.ToDouble
+		  Var kVll2 as Double = VoltageEdit2.Text.ToDouble
+		  
+		  Var Zb2 as Double = Zb1 * Sqr(kVll1/kVll2) * (MVA3ph2/MVA3ph1)
+		  
+		  ImpedanceEdit2.Text = Zb2.ToString("#.###")
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
